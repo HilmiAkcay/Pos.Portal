@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApi", "TestApi\TestApi.csproj", "{FB6F7142-B5B3-441E-8735-C56C26A2C840}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestData", "TestData\TestData.csproj", "{1519E502-93D5-42F3-A11C-8982EC270A64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudData", "TestData\CloudData.csproj", "{1519E502-93D5-42F3-A11C-8982EC270A64}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudDomain", "CloudDomain\CloudDomain.csproj", "{61805E26-12F6-4497-BEE4-E75F2DFE227C}"
 EndProject
