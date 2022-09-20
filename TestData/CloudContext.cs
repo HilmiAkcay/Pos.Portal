@@ -8,6 +8,8 @@ namespace TestData
         public DbSet<Application> Applications { get; set; }
         public DbSet<AppSetting> AppSettings { get; set; }
         public DbSet<ConnectedApp> ConnectedApps { get; set; }
+        public DbSet<EmailLog> EmailLogs { get; set; }
+        public DbSet<EmailSetting> EmailSettings { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Module> Modules { get; set; }
         public DbSet<Page> Pages { get; set; }
@@ -16,6 +18,7 @@ namespace TestData
         public DbSet<Report> Reports { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Shop> Shops { get; set; }
+        public DbSet<ShopSetting> ShopSettings { get; set; }
         public DbSet<ShopGroup> ShopGroups { get; set; }
         public DbSet<Station> Stations { get; set; }
         public DbSet<StationApp> StationApps { get; set; }

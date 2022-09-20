@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CloudDomain
+﻿namespace CloudDomain
 {
     public class Shop
     {
@@ -19,5 +13,6 @@ namespace CloudDomain
         public List<Station> Stations { get; set; }
         public List<Report> Reports { get; set; }
         public List<ReleaseNumber> ReleaseNumbers { get; set; }
+        public List<EmailLog> EmailLogs { get; set; }
     }
 }
