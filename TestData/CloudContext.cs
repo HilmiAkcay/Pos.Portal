@@ -1,7 +1,8 @@
 ﻿using CloudDomain;
 using Microsoft.EntityFrameworkCore;
 
-namespace TestData
+
+namespace CloudData
 {
     public class CloudContext : DbContext
     {
@@ -24,9 +25,22 @@ namespace TestData
         public DbSet<StationApp> StationApps { get; set; }
         public DbSet<User> Users { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public CloudContext(DbContextOptions<CloudContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=.\sqlexpress;Initial Catalog=PosCloudDB;User ID=sa;Password=Hi044603");
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Application>().HasData(
+                new Application
+                {
+                    ID=1,
+                    Name = "PurePOSGiftcardService",
+                    ExeName = "Giftcard.exe",
+                    IsAssignable = true,
+                    StartMode = 0,
+                });
         }
     }
 }
