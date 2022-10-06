@@ -12,5 +12,6 @@
         public Guid UID { get; set; } = Guid.NewGuid();
         public List<StationApp> StationApps { get; set; }
         public List<ConnectedApp> ConnectedApps { get; set; }
+        public List<InstallLog> InstallLogs { get; set; }
     }
 }

@@ -26,9 +26,18 @@ namespace TestApi.Controllers
 
         // GET api/<ApplicationController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Application>> Get(int id)
         {
-            return "value";
+            var res = await Context.Applications.Where(w => w.ID == id).FirstOrDefaultAsync();
+
+            if (res == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return res;
+            }
         }
 
         // POST api/<ApplicationController>

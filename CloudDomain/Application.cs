@@ -15,5 +15,6 @@
         public List<StationApp> StationApps { get; set; }
         public List<ConnectedApp> ConnectedApps { get; set; }
         public List<ReleaseDetail> ReleaseDetails { get; set; }
+        public List<InstallLog> InstallLogs { get; set; }
     }
 }

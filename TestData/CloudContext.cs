@@ -11,6 +11,7 @@ namespace CloudData
         public DbSet<ConnectedApp> ConnectedApps { get; set; }
         public DbSet<EmailLog> EmailLogs { get; set; }
         public DbSet<EmailSetting> EmailSettings { get; set; }
+        public DbSet<InstallLog> InstallLogs { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Module> Modules { get; set; }
         public DbSet<Page> Pages { get; set; }
