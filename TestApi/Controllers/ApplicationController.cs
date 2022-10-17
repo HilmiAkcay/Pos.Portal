@@ -1,6 +1,8 @@
 ﻿using CloudData;
 using CloudDomain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -9,7 +11,7 @@ namespace TestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ApplicationController : ControllerBase
+    public class ApplicationController : ODataController
     {
         readonly CloudContext Context;
         public ApplicationController(CloudContext context)
@@ -19,6 +21,7 @@ namespace TestApi.Controllers
 
         // GET: api/<ApplicationController>
         [HttpGet]
+        [EnableQuery]
         public async Task<ActionResult<IEnumerable<Application>>> Get()
         {
             return await Context.Applications.ToListAsync();
