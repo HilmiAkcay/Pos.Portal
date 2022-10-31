@@ -28,20 +28,20 @@ namespace TestApi.Controllers
         }
 
         // GET api/<ApplicationController>/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Application>> Get(int id)
-        {
-            var res = await Context.Applications.Where(w => w.ID == id).FirstOrDefaultAsync();
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Application>> Get(int id)
+        //{
+        //    var res = await Context.Applications.Where(w => w.ID == id).FirstOrDefaultAsync();
 
-            if (res == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return res;
-            }
-        }
+        //    if (res == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    else
+        //    {
+        //        return res;
+        //    }
+        //}
 
         // POST api/<ApplicationController>
         [HttpPost]

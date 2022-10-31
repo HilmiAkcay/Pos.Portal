@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using CloudData;
 using Microsoft.AspNetCore.OData;
+using TestApi.EntityDataModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,7 @@ var contextOptions = new DbContextOptionsBuilder<CloudContext>()
     .EnableSensitiveDataLogging()
     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking).Options;
 
-builder.Services.AddControllers().AddOData(o => o
+builder.Services.AddControllers().AddOData(o =>o.AddRouteComponents("v1", new CloudApiEntityDataModel().GetEdmModel())
                                 .Select()
                                 .Filter()
                                 .Expand()
@@ -21,7 +22,10 @@ builder.Services.AddControllers().AddOData(o => o
                                 .OrderBy());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new() { Title = "PurePOS Cloud Api", Version = "v1" });
+});
 //Add Odata 
 builder.Services.AddDbContext<CloudContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("CloudConnection"))
 .EnableSensitiveDataLogging()
@@ -33,7 +37,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PurePOS Cloud Api v1"));
 }
 
 app.UseAuthorization();
