@@ -1,5 +1,6 @@
 ﻿using CloudData;
 using CloudDomain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
@@ -11,6 +12,7 @@ namespace TestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class ApplicationController : ODataController
     {
         readonly CloudContext Context;
@@ -24,7 +26,7 @@ namespace TestApi.Controllers
         [EnableQuery]
         public async Task<ActionResult<IEnumerable<Application>>> Get()
         {
-            return await Context.Applications.ToListAsync();
+            return await Context.Application.ToListAsync();
         }
 
         // GET api/<ApplicationController>/5

@@ -19,7 +19,7 @@ namespace TestApi.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            Context.Applications.ToList();
+            Context.Application.ToList();
             return new string[] { "value1", "value2" };
         }
 
