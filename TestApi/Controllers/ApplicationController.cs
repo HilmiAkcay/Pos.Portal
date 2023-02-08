@@ -1,5 +1,5 @@
 ﻿using CloudData;
-using CloudDomain;
+using CloudDomain.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;

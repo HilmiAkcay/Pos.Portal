@@ -1,4 +1,4 @@
-﻿using CloudDomain;
+﻿using CloudDomain.Domain;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 

@@ -1,4 +1,4 @@
-﻿namespace CloudDomain
+﻿namespace CloudDomain.Domain
 {
     public class Menu
     {
