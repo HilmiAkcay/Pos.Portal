@@ -46,23 +46,23 @@ namespace CloudData
             modelBuilder.Entity<ShopGroup>().HasData(
                 new ShopGroup
                 {
-                    ID= 1,
-                    CreatedDate= DateTime.Now,
-                    IsDeleted= false,
-                    ModifiedDate= DateTime.Now,
-                    Name="Default Group",
-                    UID= Guid.NewGuid(),
+                    ID = 1,
+                    CreatedDate = DateTime.Now,
+                    IsDeleted = false,
+                    ModifiedDate = DateTime.Now,
+                    Name = "Default Group",
+                    UID = Guid.NewGuid(),
                 });
             modelBuilder.Entity<Shop>().HasData(
                 new Shop
                 {
-                    ID= 1,
-                    CreatedDate= DateTime.Now,
-                    IsDeleted= false,
-                    ModifiedDate= DateTime.Now,
-                    Name="Default Shop",
+                    ID = 1,
+                    CreatedDate = DateTime.Now,
+                    IsDeleted = false,
+                    ModifiedDate = DateTime.Now,
+                    Name = "Default Shop",
                     UID = Guid.NewGuid(),
-                    ShopGroupId= 1,
+                    ShopGroupId = 1,
                 });
             modelBuilder.Entity<User>().HasData(
                 new User
@@ -76,8 +76,28 @@ namespace CloudData
                     Password = "PoS666",
                     RememberMe = true,
                     UID = Guid.NewGuid(),
-                    ShopId= 1,
+                    ShopId = 1,
                 });
+
+            Page page = new Page()
+            {
+                ID = 1,
+                Name = "Users",
+                PurePosId = 2
+            };
+
+            modelBuilder.Entity<Page>().HasData(page);
+
+            page = new Page()
+            {
+                ID = 3,
+                Name = "User Setting",
+                PurePosId = 3
+            };
+
+            modelBuilder.Entity<Page>().HasData(page);
+
+
         }
     }
 }
