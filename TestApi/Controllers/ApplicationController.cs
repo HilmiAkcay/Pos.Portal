@@ -26,6 +26,7 @@ namespace TestApi.Controllers
         [EnableQuery]
         public async Task<ActionResult<IEnumerable<Application>>> Get()
         {
+            var idn = HttpContext.User.Identity;
             return await Context.Application.ToListAsync();
         }
 

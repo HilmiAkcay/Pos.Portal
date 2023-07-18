@@ -20,8 +20,8 @@ var contextOptions = new DbContextOptionsBuilder<CloudContext>()
     .EnableSensitiveDataLogging()
     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking).Options;
 
-
-builder.Services.AddControllers().AddOData(o => o.AddRouteComponents("v1", new CloudApiEntityDataModel().GetEdmModel())
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddControllers().AddOData(o => o.AddRouteComponents("odata", new CloudApiEntityDataModel().GetEdmModel())
                                 .Select()
                                 .Filter()
                                 .Expand()
@@ -58,6 +58,8 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddDbContext<CloudContext>(opt => opt.UseSqlServer(builder.Configuration["ConnectionStrings:CloudConnection"])
 .EnableSensitiveDataLogging()
 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
+
 
 builder.Services.AddAuthentication(opt => {
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -99,7 +101,7 @@ app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 //Hilmi: This created the database if it is not created.
 //it adds the table(s) also.
 
-using (CloudContext cloudContext = new CloudContext(contextOptions))
+using (CloudContext cloudContext = new CloudContext(contextOptions,null))
 {
     cloudContext.Database.EnsureCreated();
 }
