@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApi", "TestApi\TestApi.csproj", "{FB6F7142-B5B3-441E-8735-C56C26A2C840}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudData", "TestData\CloudData.csproj", "{1519E502-93D5-42F3-A11C-8982EC270A64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pos.EfCore", "TestData\Pos.EfCore.csproj", "{1519E502-93D5-42F3-A11C-8982EC270A64}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudDomain", "CloudDomain\CloudDomain.csproj", "{61805E26-12F6-4497-BEE4-E75F2DFE227C}"
 EndProject
@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BAB89793-3B23-4E29-9885-328FDDC9EB93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.CloudData", "Test.CloudData\Test.CloudData.csproj", "{E1ADFFD4-6BE0-4B67-AA6D-94E4C7AEB75A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.CloudData", "Test.CloudData\Test.CloudData.csproj", "{E1ADFFD4-6BE0-4B67-AA6D-94E4C7AEB75A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

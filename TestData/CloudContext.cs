@@ -1,8 +1,6 @@
 ﻿using CloudDomain;
 using CloudDomain.Domain;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Http;
 
 
 namespace CloudData
@@ -29,37 +27,11 @@ namespace CloudData
         public DbSet<StationApp> StationApp { get; set; }
         public DbSet<User> User { get; set; }
 
-        protected IHttpContextAccessor HttpContextAccessor { get; }
-
         public CloudContext(DbContextOptions<CloudContext> options) : base(options)
         {
         }
 
-        public CloudContext(DbContextOptions<CloudContext> options, IHttpContextAccessor httpContextAccessor) : base(options)
-        {
-            HttpContextAccessor = httpContextAccessor;
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (this.HttpContextAccessor != null)
-            {
-
-                var httpContext = this.HttpContextAccessor.HttpContext;
-            }
-
-            //// Retrieve the current tenant identifier
-            //string currentTenant = GetCurrentTenant(); // Replace with your logic to get the tenant identifier
-
-            //// Retrieve the connection string for the current tenant
-            //string connectionString = GetConnectionStringForTenant(currentTenant); // Replace with your logic to get the connection string
-
-            //// Update the DbContext's connection string
-            //optionsBuilder.UseSqlServer(connectionString);
-
-            base.OnConfiguring(optionsBuilder);
-        }
-
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Application>().HasData(

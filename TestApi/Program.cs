@@ -1,14 +1,12 @@
-using Microsoft.EntityFrameworkCore;
 using CloudData;
-using Microsoft.AspNetCore.OData;
-using TestApi.EntityDataModels;
-using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.OData;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
+using TestApi.EntityDataModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -98,13 +96,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-//Hilmi: This created the database if it is not created.
-//it adds the table(s) also.
-
-using (CloudContext cloudContext = new CloudContext(contextOptions,null))
-{
-    cloudContext.Database.EnsureCreated();
-}
 
 app.Run();
 
