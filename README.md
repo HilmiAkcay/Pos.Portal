@@ -1,6 +1,6 @@
 # TestApi
 
 Pos Cloud 
-Add know how and how to use in here
+Add know-how and how to use it here
 
-To lonig to Swagger anter User name and password as parameter to login endpoint then you will have JWT and past this Token into to Authorize section to authorize all Swagger methods.
+To log in to Swagger enter the User name and password as a parameter to the login endpoint then you will have JWT and paste this Token into the Authorize section to authorize all Swagger methods.
