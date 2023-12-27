@@ -1,4 +1,6 @@
-﻿namespace CloudDomain.Domain
+﻿using Pos.Domain.Entities;
+
+namespace CloudDomain.Domain
 {
     public class Application
     {

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApi", "TestApi\TestApi.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pos.EfCore", "TestData\Pos.EfCore.csproj", "{1519E502-93D5-42F3-A11C-8982EC270A64}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudDomain", "CloudDomain\CloudDomain.csproj", "{61805E26-12F6-4497-BEE4-E75F2DFE227C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pos.Domain", "CloudDomain\Pos.Domain.csproj", "{61805E26-12F6-4497-BEE4-E75F2DFE227C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{957A2320-76B1-4D3E-88B6-9C12593AD228}"
 	ProjectSection(SolutionItems) = preProject
