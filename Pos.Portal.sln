@@ -16,8 +16,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BAB89793-3B23-4E29-9885-328FDDC9EB93}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.CloudData", "Test.CloudData\Test.CloudData.csproj", "{E1ADFFD4-6BE0-4B67-AA6D-94E4C7AEB75A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,16 +34,9 @@ Global
 		{61805E26-12F6-4497-BEE4-E75F2DFE227C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61805E26-12F6-4497-BEE4-E75F2DFE227C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61805E26-12F6-4497-BEE4-E75F2DFE227C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E1ADFFD4-6BE0-4B67-AA6D-94E4C7AEB75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1ADFFD4-6BE0-4B67-AA6D-94E4C7AEB75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1ADFFD4-6BE0-4B67-AA6D-94E4C7AEB75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1ADFFD4-6BE0-4B67-AA6D-94E4C7AEB75A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{E1ADFFD4-6BE0-4B67-AA6D-94E4C7AEB75A} = {BAB89793-3B23-4E29-9885-328FDDC9EB93}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D40723CF-C9E2-482F-9806-134DD4DD34E0}
