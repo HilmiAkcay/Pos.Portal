@@ -1,12 +1,13 @@
-﻿using System.Reflection;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection;
 
 namespace Pos.Domain.Entities
 {
     /// <summary>
-    /// A shortcut of <see cref="Entity{TPrimaryKey}"/> for most used primary key type (<see cref="int"/>).
+    /// A shortcut of <see cref="Entity{TPrimaryKey}"/> for most used primary key type (<see cref="long"/>).
     /// </summary>
     [Serializable]
-    public abstract class Entity : Entity<int>, IEntity
+    public abstract class Entity : Entity<long>, IEntity
     {
 
     }
@@ -22,7 +23,8 @@ namespace Pos.Domain.Entities
         /// <summary>
         /// Unique identifier for this entity.
         /// </summary>
-        public virtual TPrimaryKey Id { get; set; }
+        [Column(Order = 0)]
+        public virtual TPrimaryKey ID { get; set; }
 
         /// <summary>
         /// Checks if this entity is transient (it has not an Id).
@@ -30,7 +32,7 @@ namespace Pos.Domain.Entities
         /// <returns>True, if this entity is transient</returns>
         public virtual bool IsTransient()
         {
-            if (EqualityComparer<TPrimaryKey>.Default.Equals(Id, default(TPrimaryKey)))
+            if (EqualityComparer<TPrimaryKey>.Default.Equals(ID, default(TPrimaryKey)))
             {
                 return true;
             }
@@ -38,12 +40,12 @@ namespace Pos.Domain.Entities
             //Workaround for EF Core since it sets int/long to min value when attaching to dbcontext
             if (typeof(TPrimaryKey) == typeof(int))
             {
-                return Convert.ToInt32(Id) <= 0;
+                return Convert.ToInt32(ID) <= 0;
             }
 
             if (typeof(TPrimaryKey) == typeof(long))
             {
-                return Convert.ToInt64(Id) <= 0;
+                return Convert.ToInt64(ID) <= 0;
             }
 
             return false;
@@ -90,12 +92,12 @@ namespace Pos.Domain.Entities
                 return false;
             }
 
-            return Id.Equals(other.Id);
+            return ID.Equals(other.ID);
         }
 
         public override string ToString()
         {
-            return $"[{GetType().Name} {Id}]";
+            return $"[{GetType().Name} {ID}]";
         }
     }
 }

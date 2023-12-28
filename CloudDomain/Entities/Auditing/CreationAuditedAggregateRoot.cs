@@ -26,19 +26,19 @@ namespace Pos.Domain.Entities.Auditing
         /// <summary>
         /// Creation time of this entity.
         /// </summary>
-        public virtual DateTime CreationTime { get; set; }
+        public virtual DateTime CTime { get; set; }
 
         /// <summary>
         /// Creator of this entity.
         /// </summary>
-        public virtual long? CreatorUserId { get; set; }
+        public virtual long? CUserId { get; set; }
 
         /// <summary>
         /// Constructor.
         /// </summary>
         protected CreationAuditedAggregateRoot()
         {
-            CreationTime = DateTime.Now;
+            CTime = DateTime.Now;
         }
     }
 
@@ -54,7 +54,7 @@ namespace Pos.Domain.Entities.Auditing
         /// <summary>
         /// Reference to the creator user of this entity.
         /// </summary>
-        [ForeignKey("CreatorUserId")]
-        public virtual TUser CreatorUser { get; set; }
+        [ForeignKey("CUserId")]
+        public virtual TUser CUser { get; set; }
     }
 }

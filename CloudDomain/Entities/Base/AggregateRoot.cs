@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pos.Domain.Entities
 {
-    public class AggregateRoot : AggregateRoot<int>, IAggregateRoot
+    public class AggregateRoot : AggregateRoot<long>, IAggregateRoot
     {
 
     }

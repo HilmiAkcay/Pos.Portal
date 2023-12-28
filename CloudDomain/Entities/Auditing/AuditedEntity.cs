@@ -3,10 +3,10 @@
 namespace Pos.Domain.Entities
 {
     /// <summary>
-    /// A shortcut of <see cref="AuditedEntity{TPrimaryKey}"/> for most used primary key type (<see cref="int"/>).
+    /// A shortcut of <see cref="AuditedEntity{TPrimaryKey}"/> for most used primary key type (<see cref="long"/>).
     /// </summary>
     [Serializable]
-    public abstract class AuditedEntity : AuditedEntity<int>, IEntity
+    public abstract class AuditedEntity : AuditedEntity<long>, IEntity
     {
 
     }
@@ -21,12 +21,13 @@ namespace Pos.Domain.Entities
         /// <summary>
         /// Last modification date of this entity.
         /// </summary>
-        public virtual DateTime? LastModificationTime { get; set; }
+        /// 
+        public virtual DateTime? MTime { get; set; }
 
         /// <summary>
         /// Last modifier user of this entity.
         /// </summary>
-        public virtual long? LastModifierUserId { get; set; }
+        public virtual long? MUserId { get; set; }
     }
 
     /// <summary>
@@ -41,13 +42,13 @@ namespace Pos.Domain.Entities
         /// <summary>
         /// Reference to the creator user of this entity.
         /// </summary>
-        [ForeignKey("CreatorUserId")]
-        public virtual TUser CreatorUser { get; set; }
+        [ForeignKey("CUserId")]
+        public virtual TUser CUser { get; set; }
 
         /// <summary>
         /// Reference to the last modifier user of this entity.
         /// </summary>
-        [ForeignKey("LastModifierUserId")]
-        public virtual TUser LastModifierUser { get; set; }
+        [ForeignKey("MUserId")]
+        public virtual TUser MUser { get; set; }
     }
 }

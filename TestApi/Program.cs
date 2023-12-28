@@ -1,10 +1,10 @@
-using CloudData;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Pos.EfCore.Context;
 using System.Text;
 using TestApi.EntityDataModels;
 

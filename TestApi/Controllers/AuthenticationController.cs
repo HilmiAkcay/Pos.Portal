@@ -1,8 +1,8 @@
-﻿using CloudData;
-using CloudDomain;
+﻿using CloudDomain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Pos.EfCore.Context;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

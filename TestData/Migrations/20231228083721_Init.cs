@@ -3,10 +3,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace CloudData.Migrations
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
+namespace Pos.EfCore.Migrations
 {
-    public partial class PurePosId_Added_to_Page : Migration
+    /// <inheritdoc />
+    public partial class Init : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -15,15 +19,16 @@ namespace CloudData.Migrations
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ExeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ExeName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     StartMode = table.Column<int>(type: "int", nullable: false),
                     StartAfterInstall = table.Column<bool>(type: "bit", nullable: false),
                     IsAssignable = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,12 +41,16 @@ namespace CloudData.Migrations
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    CategoryName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    PreviousID = table.Column<int>(type: "int", nullable: true),
+                    SharedLineId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,10 +70,11 @@ namespace CloudData.Migrations
                     SenderPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EnableSSL = table.Column<bool>(type: "bit", nullable: false),
                     TimeOut = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -84,10 +94,11 @@ namespace CloudData.Migrations
                     Tag = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DisplayOrder = table.Column<int>(type: "int", nullable: false),
                     Expanded = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -102,10 +113,11 @@ namespace CloudData.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsPack = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -120,10 +132,11 @@ namespace CloudData.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PurePosId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -139,10 +152,11 @@ namespace CloudData.Migrations
                     Number = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -159,10 +173,11 @@ namespace CloudData.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Uri = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IconUri = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -177,10 +192,11 @@ namespace CloudData.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -194,10 +210,11 @@ namespace CloudData.Migrations
                     ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -240,10 +257,11 @@ namespace CloudData.Migrations
                     PageId = table.Column<long>(type: "bigint", nullable: false),
                     Detail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -281,11 +299,12 @@ namespace CloudData.Migrations
                     ConcurrentFoCount = table.Column<int>(type: "int", nullable: false),
                     DatabaseName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DefaultReportId = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ReportID = table.Column<long>(type: "bigint", nullable: true)
+                    ReportID = table.Column<long>(type: "bigint", nullable: true),
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -328,30 +347,6 @@ namespace CloudData.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ReleaseNumberShopGroup",
-                columns: table => new
-                {
-                    ReleaseNumbersID = table.Column<long>(type: "bigint", nullable: false),
-                    ShopGroupsID = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ReleaseNumberShopGroup", x => new { x.ReleaseNumbersID, x.ShopGroupsID });
-                    table.ForeignKey(
-                        name: "FK_ReleaseNumberShopGroup_ReleaseNumber_ReleaseNumbersID",
-                        column: x => x.ReleaseNumbersID,
-                        principalTable: "ReleaseNumber",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ReleaseNumberShopGroup_ShopGroup_ShopGroupsID",
-                        column: x => x.ShopGroupsID,
-                        principalTable: "ShopGroup",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Shop",
                 columns: table => new
                 {
@@ -359,10 +354,11 @@ namespace CloudData.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ShopGroupId = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -370,6 +366,30 @@ namespace CloudData.Migrations
                     table.ForeignKey(
                         name: "FK_Shop_ShopGroup_ShopGroupId",
                         column: x => x.ShopGroupId,
+                        principalTable: "ShopGroup",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShopGroupReleaseNumber",
+                columns: table => new
+                {
+                    ReleaseNumbersID = table.Column<long>(type: "bigint", nullable: false),
+                    ShopGroupsID = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShopGroupReleaseNumber", x => new { x.ReleaseNumbersID, x.ShopGroupsID });
+                    table.ForeignKey(
+                        name: "FK_ShopGroupReleaseNumber_ReleaseNumber_ReleaseNumbersID",
+                        column: x => x.ReleaseNumbersID,
+                        principalTable: "ReleaseNumber",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ShopGroupReleaseNumber_ShopGroup_ShopGroupsID",
+                        column: x => x.ShopGroupsID,
                         principalTable: "ShopGroup",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -392,10 +412,11 @@ namespace CloudData.Migrations
                     AttachmentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AttachmentUri = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsSent = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -403,30 +424,6 @@ namespace CloudData.Migrations
                     table.ForeignKey(
                         name: "FK_EmailLog_Shop_ShopId",
                         column: x => x.ShopId,
-                        principalTable: "Shop",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ReleaseNumberShop",
-                columns: table => new
-                {
-                    ReleaseNumbersID = table.Column<long>(type: "bigint", nullable: false),
-                    ShopsID = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ReleaseNumberShop", x => new { x.ReleaseNumbersID, x.ShopsID });
-                    table.ForeignKey(
-                        name: "FK_ReleaseNumberShop_ReleaseNumber_ReleaseNumbersID",
-                        column: x => x.ReleaseNumbersID,
-                        principalTable: "ReleaseNumber",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ReleaseNumberShop_Shop_ShopsID",
-                        column: x => x.ShopsID,
                         principalTable: "Shop",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -457,6 +454,30 @@ namespace CloudData.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ShopReleaseNumber",
+                columns: table => new
+                {
+                    ReleaseNumbersID = table.Column<long>(type: "bigint", nullable: false),
+                    ShopsID = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShopReleaseNumber", x => new { x.ReleaseNumbersID, x.ShopsID });
+                    table.ForeignKey(
+                        name: "FK_ShopReleaseNumber_ReleaseNumber_ReleaseNumbersID",
+                        column: x => x.ReleaseNumbersID,
+                        principalTable: "ReleaseNumber",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ShopReleaseNumber_Shop_ShopsID",
+                        column: x => x.ShopsID,
+                        principalTable: "Shop",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Station",
                 columns: table => new
                 {
@@ -465,10 +486,11 @@ namespace CloudData.Migrations
                     HostName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MacAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ShopId = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -492,10 +514,11 @@ namespace CloudData.Migrations
                     ShopId = table.Column<long>(type: "bigint", nullable: false),
                     RememberMe = table.Column<bool>(type: "bit", nullable: false),
                     IsValidated = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -518,10 +541,11 @@ namespace CloudData.Migrations
                     StationId = table.Column<long>(type: "bigint", nullable: false),
                     IsConnected = table.Column<bool>(type: "bit", nullable: false),
                     ConnectionId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -550,10 +574,11 @@ namespace CloudData.Migrations
                     ApplicationId = table.Column<long>(type: "bigint", nullable: false),
                     StartMode = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -582,10 +607,11 @@ namespace CloudData.Migrations
                     StationId = table.Column<long>(type: "bigint", nullable: false),
                     StartMode = table.Column<int>(type: "int", nullable: false),
                     StartAfterInstall = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CUserId = table.Column<long>(type: "bigint", nullable: true),
+                    MTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -630,28 +656,36 @@ namespace CloudData.Migrations
 
             migrationBuilder.InsertData(
                 table: "Application",
-                columns: new[] { "ID", "CreatedDate", "ExeName", "IsAssignable", "IsDeleted", "ModifiedDate", "Name", "StartAfterInstall", "StartMode", "UID" },
-                values: new object[] { 1L, new DateTime(2023, 6, 2, 11, 51, 19, 553, DateTimeKind.Local).AddTicks(6866), "Giftcard.exe", true, false, new DateTime(2023, 6, 2, 11, 51, 19, 553, DateTimeKind.Local).AddTicks(6877), "PurePOSGiftcardService", false, 0, new Guid("2c95d909-87bf-4260-9456-416be57aff04") });
+                columns: new[] { "ID", "CTime", "CUserId", "ExeName", "IsAssignable", "IsDeleted", "MTime", "MUserId", "Name", "StartAfterInstall", "StartMode" },
+                values: new object[] { 1L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(2783), null, "Giftcard.exe", true, false, null, null, "PurePOSGiftcardService", false, 0 });
 
             migrationBuilder.InsertData(
                 table: "Page",
-                columns: new[] { "ID", "CreatedDate", "IsDeleted", "ModifiedDate", "Name", "PurePosId", "UID" },
-                values: new object[] { 1L, new DateTime(2023, 6, 2, 11, 51, 19, 553, DateTimeKind.Local).AddTicks(7098), false, new DateTime(2023, 6, 2, 11, 51, 19, 553, DateTimeKind.Local).AddTicks(7099), "Users", 2, new Guid("bfd9ecb4-9f37-4b0d-8418-932766396070") });
+                columns: new[] { "ID", "CTime", "CUserId", "IsDeleted", "MTime", "MUserId", "Name", "PurePosId" },
+                values: new object[,]
+                {
+                    { 1L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3216), null, false, null, null, "Users", 2 },
+                    { 3L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3248), null, false, null, null, "User Setting", 3 }
+                });
 
             migrationBuilder.InsertData(
                 table: "ShopGroup",
-                columns: new[] { "ID", "CreatedDate", "IsDeleted", "ModifiedDate", "Name", "UID" },
-                values: new object[] { 1L, new DateTime(2023, 6, 2, 11, 51, 19, 553, DateTimeKind.Local).AddTicks(7038), false, new DateTime(2023, 6, 2, 11, 51, 19, 553, DateTimeKind.Local).AddTicks(7040), "Default Group", new Guid("0ffb52f5-6ff4-4ba8-b4c4-63a9d375652a") });
+                columns: new[] { "ID", "CTime", "CUserId", "IsDeleted", "MTime", "MUserId", "Name" },
+                values: new object[] { 1L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3101), null, false, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3103), null, "Default Group" });
 
             migrationBuilder.InsertData(
                 table: "Shop",
-                columns: new[] { "ID", "CreatedDate", "IsDeleted", "ModifiedDate", "Name", "ShopGroupId", "UID" },
-                values: new object[] { 1L, new DateTime(2023, 6, 2, 11, 51, 19, 553, DateTimeKind.Local).AddTicks(7071), false, new DateTime(2023, 6, 2, 11, 51, 19, 553, DateTimeKind.Local).AddTicks(7073), "Default Shop", 1L, new Guid("3a0521dd-db52-4db3-9fe2-bebd2c844516") });
+                columns: new[] { "ID", "CTime", "CUserId", "IsDeleted", "MTime", "MUserId", "Name", "ShopGroupId" },
+                values: new object[] { 1L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3138), null, false, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3139), null, "Default Shop", 1L });
 
             migrationBuilder.InsertData(
                 table: "User",
-                columns: new[] { "ID", "CreatedDate", "Email", "IsDeleted", "IsValidated", "ModifiedDate", "Password", "RememberMe", "ShopId", "UID" },
-                values: new object[] { 1L, new DateTime(2023, 6, 2, 11, 51, 19, 553, DateTimeKind.Local).AddTicks(7091), "admin@posmanager.nl", false, true, new DateTime(2023, 6, 2, 11, 51, 19, 553, DateTimeKind.Local).AddTicks(7093), "PoS666", true, 1L, new Guid("1bb31986-b56c-4a62-9aae-5956d659092d") });
+                columns: new[] { "ID", "CTime", "CUserId", "Email", "IsDeleted", "IsValidated", "MTime", "MUserId", "Password", "RememberMe", "ShopId" },
+                values: new object[,]
+                {
+                    { 1L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3183), null, "admin@posmanager.nl", false, true, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3186), null, "PoS666", true, 1L },
+                    { 2L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3208), null, "admin", false, true, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3209), null, "1", true, 1L }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ConnectedApp_ApplicationId",
@@ -704,16 +738,6 @@ namespace CloudData.Migrations
                 column: "ReleaseNumberId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReleaseNumberShop_ShopsID",
-                table: "ReleaseNumberShop",
-                column: "ShopsID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ReleaseNumberShopGroup_ShopGroupsID",
-                table: "ReleaseNumberShopGroup",
-                column: "ShopGroupsID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ReportShop_ShopsID",
                 table: "ReportShop",
                 column: "ShopsID");
@@ -727,6 +751,16 @@ namespace CloudData.Migrations
                 name: "IX_Shop_ShopGroupId",
                 table: "Shop",
                 column: "ShopGroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShopGroupReleaseNumber_ShopGroupsID",
+                table: "ShopGroupReleaseNumber",
+                column: "ShopGroupsID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShopReleaseNumber_ShopsID",
+                table: "ShopReleaseNumber",
+                column: "ShopsID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShopSetting_EmailSettingId",
@@ -759,6 +793,7 @@ namespace CloudData.Migrations
                 column: "ShopId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
@@ -783,16 +818,16 @@ namespace CloudData.Migrations
                 name: "ReleaseDetail");
 
             migrationBuilder.DropTable(
-                name: "ReleaseNumberShop");
-
-            migrationBuilder.DropTable(
-                name: "ReleaseNumberShopGroup");
-
-            migrationBuilder.DropTable(
                 name: "ReportShop");
 
             migrationBuilder.DropTable(
                 name: "RoleUser");
+
+            migrationBuilder.DropTable(
+                name: "ShopGroupReleaseNumber");
+
+            migrationBuilder.DropTable(
+                name: "ShopReleaseNumber");
 
             migrationBuilder.DropTable(
                 name: "ShopSetting");
@@ -810,13 +845,13 @@ namespace CloudData.Migrations
                 name: "Page");
 
             migrationBuilder.DropTable(
-                name: "ReleaseNumber");
-
-            migrationBuilder.DropTable(
                 name: "Role");
 
             migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "ReleaseNumber");
 
             migrationBuilder.DropTable(
                 name: "EmailSetting");

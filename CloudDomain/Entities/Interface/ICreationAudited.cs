@@ -10,7 +10,7 @@ namespace Pos.Domain.Entities
         /// <summary>
         /// Id of the creator user of this entity.
         /// </summary>
-        long? CreatorUserId { get; set; }
+        long? CUserId { get; set; }
     }
 
     /// <summary>
@@ -23,6 +23,6 @@ namespace Pos.Domain.Entities
         /// <summary>
         /// Reference to the creator user of this entity.
         /// </summary>
-        TUser CreatorUser { get; set; }
+        TUser CUser { get; set; }
     }
 }

@@ -1,19 +1,15 @@
-﻿using Pos.Domain.Entities;
-
-namespace CloudDomain.Domain
+﻿namespace CloudDomain.Domain
 {
-    public class Application
+    public class Application : DefaultEntity
     {
-        public long ID { get; set; }
+        [StringLength(50)]
         public string Name { get; set; }
+
+        [StringLength(50)]
         public string ExeName { get; set; }
         public int StartMode { get; set; }
         public bool StartAfterInstall { get; set; }
         public bool IsAssignable { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public DateTime ModifiedDate { get; set; } = DateTime.Now;
-        public bool IsDeleted { get; set; }
-        public Guid UID { get; set; } = Guid.NewGuid();
         public List<StationApp> StationApps { get; set; }
         public List<ConnectedApp> ConnectedApps { get; set; }
         public List<ReleaseDetail> ReleaseDetails { get; set; }

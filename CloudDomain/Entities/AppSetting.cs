@@ -1,13 +1,18 @@
 ﻿namespace CloudDomain.Domain
 {
-    public class AppSetting
+    public class AppSetting : DefaultEntity
     {
-        public long ID { get; set; }
+        [StringLength(255)]
         public string Name { get; set; }
+
+        [StringLength(255)]
         public string Value { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public DateTime ModifiedDate { get; set; } = DateTime.Now;
-        public bool IsDeleted { get; set; }
-        public Guid UID { get; set; } = Guid.NewGuid();
+
+        [StringLength(50)]
+        public string CategoryName { get; set; }
+        public int? PreviousID { get; set; }
+        public Guid? SharedLineId { get; set; }
+
+
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace Pos.Domain.Entities
 {
     /// <summary>
-    /// A shortcut of <see cref="IEntity{TPrimaryKey}"/> for most used primary key type (<see cref="int"/>).
+    /// A shortcut of <see cref="IEntity{TPrimaryKey}"/> for most used primary key type (<see cref="long"/>).
     /// </summary>
-    public interface IEntity : IEntity<int>
+    public interface IEntity : IEntity<long>
     {
 
     }
@@ -17,10 +17,10 @@
         /// <summary>
         /// Unique identifier for this entity.
         /// </summary>
-        TPrimaryKey Id { get; set; }
+        TPrimaryKey ID { get; set; }
 
         /// <summary>
-        /// Checks if this entity is transient (not persisted to database and it has not an <see cref="Id"/>).
+        /// Checks if this entity is transient (not persisted to database and it has not an <see cref="ID"/>).
         /// </summary>
         /// <returns>True, if this entity is transient</returns>
         bool IsTransient();

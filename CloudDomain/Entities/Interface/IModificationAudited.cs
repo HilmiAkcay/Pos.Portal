@@ -15,7 +15,7 @@ namespace Pos.Domain.Entities
         /// <summary>
         /// Last modifier user for this entity.
         /// </summary>
-        long? LastModifierUserId { get; set; }
+        long? MUserId { get; set; }
     }
 
     /// <summary>
@@ -28,6 +28,6 @@ namespace Pos.Domain.Entities
         /// <summary>
         /// Reference to the last modifier user of this entity.
         /// </summary>
-        TUser LastModifierUser { get; set; }
+        TUser MUser { get; set; }
     }
 }
