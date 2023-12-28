@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CloudDomain\Pos.Domain.csproj" />
+    <ProjectReference Include="..\Pos.Domain\Pos.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
