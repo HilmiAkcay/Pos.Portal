@@ -27,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CloudDomain\Pos.Domain.csproj" />
-    <ProjectReference Include="..\TestData\Pos.EfCore.csproj" />
+    <ProjectReference Include="..\Pos.Domain\Pos.Domain.csproj" />
+    <ProjectReference Include="..\Pos.EfCore\Pos.EfCore.csproj" />
   </ItemGroup>
 
 </Project>
