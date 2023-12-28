@@ -1,4 +1,7 @@
-# TestApi
+# Pos.Portal
+
+1. Clone or Fork the repository.
+2. Set Pos.Api as a start-up project.
 
 Pos Cloud 
 Add know-how and how to use it here
