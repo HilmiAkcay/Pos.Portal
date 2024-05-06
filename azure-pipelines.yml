@@ -32,13 +32,12 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'Azure subscription 1(d1baa0be-98b4-4f58-b000-b153e43710a6)'
-    appType: 'webApp'
-    appName: 'PurePosPortal'
+    azureSubscription: 'Azure subscription 1(1)(d1baa0be-98b4-4f58-b000-b153e43710a6)'
+    appType: 'webAppLinux'
+    appName: 'PosPortal'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    deploymentMethod: 'auto'
+
 
 
