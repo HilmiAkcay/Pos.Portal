@@ -8,9 +8,21 @@ using Pos.EfCore.Context;
 using System.Text;
 using TestApi.EntityDataModels;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:3000",
+                                              "http://www.contoso.com");
+                      });
+});
 
 
 var contextOptions = new DbContextOptionsBuilder<CloudContext>()
@@ -30,7 +42,7 @@ builder.Services.AddControllers().AddOData(o => o.AddRouteComponents("odata", ne
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new() { Title = "PurePOS Cloud Api", Version = "v1" });
+    c.SwaggerDoc("v1", new() { Title = "PurePOS Portal Api", Version = "v1" });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Scheme = "Bearer",
