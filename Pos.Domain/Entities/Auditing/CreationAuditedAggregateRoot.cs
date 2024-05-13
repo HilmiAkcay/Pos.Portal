@@ -38,7 +38,7 @@ namespace Pos.Domain.Entities.Auditing
         /// </summary>
         protected CreationAuditedAggregateRoot()
         {
-            CTime = DateTime.Now;
+            CTime = DateTime.Now.ToUniversalTime();
         }
     }
 

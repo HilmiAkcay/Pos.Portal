@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Pos.EfCore.Context;
@@ -64,17 +67,34 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-//Add Odata 
-builder.Services.AddDbContext<CloudContext>(opt => opt.UseSqlServer(builder.Configuration["ConnectionStrings:CloudConnection"])
-.EnableSensitiveDataLogging()
-.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
+var databaseProvider = builder.Configuration["DatabaseProvider"];
+var connectionString = builder.Configuration.GetConnectionString(databaseProvider);
+
+builder.Services.AddDbContext<CloudContext>(opt =>
+{
+    if (databaseProvider == "PostgreSQL")
+    {
+        opt.UseNpgsql(connectionString).EnableSensitiveDataLogging().UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    }
+    else if (databaseProvider == "SQLServer")
+    {
+        opt.UseSqlServer(connectionString).EnableSensitiveDataLogging().UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    }
+    else
+    {
+        throw new InvalidOperationException("Unknown database provider.");
+    }
+});
 
 
 
-builder.Services.AddAuthentication(opt => {
+builder.Services.AddAuthentication(opt =>
+{
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options => {
+}).AddJwtBearer(options =>
+{
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -103,11 +123,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PurePOS Cloud Api v1"));
 }
 
+app.UseCors(
+        options => options.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader()
+    );
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+
 
 app.Run();
 

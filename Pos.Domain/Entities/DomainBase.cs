@@ -4,8 +4,8 @@
     {
         public long ID { get; set; }
 
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public DateTime ModifiedDate { get; set; } = DateTime.Now;
+        public DateTime CreatedDate { get; set; } = DateTime.Now.ToUniversalTime();
+        public DateTime ModifiedDate { get; set; } = DateTime.Now.ToUniversalTime();
         public bool IsDeleted { get; set; }
         public Guid UID { get; set; } = Guid.NewGuid();
     }

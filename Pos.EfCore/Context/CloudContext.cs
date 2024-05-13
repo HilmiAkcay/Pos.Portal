@@ -1,12 +1,17 @@
 ﻿using CloudDomain;
 using CloudDomain.Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 
 namespace Pos.EfCore.Context;
 
 public class CloudContext : DbContext
 {
+    #region Entities
     public DbSet<Application> Application { get; set; }
     public DbSet<AppSetting> AppSetting { get; set; }
     public DbSet<ConnectedApp> ConnectedApp { get; set; }
@@ -26,6 +31,8 @@ public class CloudContext : DbContext
     public DbSet<Station> Station { get; set; }
     public DbSet<StationApp> StationApp { get; set; }
     public DbSet<User> User { get; set; }
+
+    #endregion Entities
 
     public CloudContext(DbContextOptions<CloudContext> options) : base(options)
     {

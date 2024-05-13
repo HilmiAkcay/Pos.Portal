@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Pos.EfCore.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -657,34 +657,51 @@ namespace Pos.EfCore.Migrations
             migrationBuilder.InsertData(
                 table: "Application",
                 columns: new[] { "ID", "CTime", "CUserId", "ExeName", "IsAssignable", "IsDeleted", "MTime", "MUserId", "Name", "StartAfterInstall", "StartMode" },
-                values: new object[] { 1L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(2783), null, "Giftcard.exe", true, false, null, null, "PurePOSGiftcardService", false, 0 });
+                values: new object[,]
+                {
+                    { 1L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(6879), null, "Giftcard.exe", true, false, null, null, "PurePOSGiftcardService", false, 3 },
+                    { 2L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(6992), null, "PosCloudConnector.exe", true, false, null, null, "PccService", false, 2 },
+                    { 3L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7006), null, "DbSyncConsole.exe", true, false, null, null, "PosSyncService", false, 3 },
+                    { 4L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7018), null, "PosCommissionService.exe", true, false, null, null, "PurePOSCommissionService", false, 3 },
+                    { 5L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7031), null, "PosScheduleService.exe", true, false, null, null, "PurePOSScheduleService", false, 3 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Page",
                 columns: new[] { "ID", "CTime", "CUserId", "IsDeleted", "MTime", "MUserId", "Name", "PurePosId" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3216), null, false, null, null, "Users", 2 },
-                    { 3L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3248), null, false, null, null, "User Setting", 3 }
+                    { 1L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7227), null, false, null, null, "Settings (Category)", 1 },
+                    { 2L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7242), null, false, null, null, "Users", 2 },
+                    { 3L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7255), null, false, null, null, "User Settings", 3 },
+                    { 4L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7266), null, false, null, null, "Company", 6 },
+                    { 5L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7278), null, false, null, null, "Company Region", 7 },
+                    { 6L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7290), null, false, null, null, "Shop", 8 },
+                    { 7L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7301), null, false, null, null, "Warehouse", 9 },
+                    { 8L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7311), null, false, null, null, "Product Management", 10 },
+                    { 9L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7322), null, false, null, null, "Brand", 11 },
+                    { 10L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7334), null, false, null, null, "Model", 12 },
+                    { 11L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7345), null, false, null, null, "Season", 13 },
+                    { 12L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7356), null, false, null, null, "Vat", 18 }
                 });
 
             migrationBuilder.InsertData(
                 table: "ShopGroup",
                 columns: new[] { "ID", "CTime", "CUserId", "IsDeleted", "MTime", "MUserId", "Name" },
-                values: new object[] { 1L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3101), null, false, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3103), null, "Default Group" });
+                values: new object[] { 1L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7050), null, false, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7053), null, "Default Group" });
 
             migrationBuilder.InsertData(
                 table: "Shop",
                 columns: new[] { "ID", "CTime", "CUserId", "IsDeleted", "MTime", "MUserId", "Name", "ShopGroupId" },
-                values: new object[] { 1L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3138), null, false, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3139), null, "Default Shop", 1L });
+                values: new object[] { 1L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7079), null, false, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7081), null, "Default Shop", 1L });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "ID", "CTime", "CUserId", "Email", "IsDeleted", "IsValidated", "MTime", "MUserId", "Password", "RememberMe", "ShopId" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3183), null, "admin@posmanager.nl", false, true, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3186), null, "PoS666", true, 1L },
-                    { 2L, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3208), null, "admin", false, true, new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3209), null, "1", true, 1L }
+                    { 1L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7141), null, "admin@posmanager.nl", false, true, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7144), null, "PoS666", true, 1L },
+                    { 2L, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7163), null, "admin", false, true, new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7165), null, "1", true, 1L }
                 });
 
             migrationBuilder.CreateIndex(

@@ -1,5 +1,6 @@
 ﻿using CloudDomain.Domain;
 using Microsoft.EntityFrameworkCore;
+using Pos.EfCore.Seeds;
 
 namespace Pos.EfCore
 {
@@ -14,25 +15,64 @@ namespace Pos.EfCore
                   Name = "PurePOSGiftcardService",
                   ExeName = "Giftcard.exe",
                   IsAssignable = true,
-                  StartMode = 0,
+                  StartMode = Domain.Enums.EnumServiceStartMode.Manual
               });
+
+            modelBuilder.Entity<Application>().HasData(
+            new Application
+            {
+                ID = 2,
+                Name = "PccService",
+                ExeName = "PosCloudConnector.exe",
+                IsAssignable = true,
+                StartMode = Domain.Enums.EnumServiceStartMode.Automatic,
+            });
+            modelBuilder.Entity<Application>().HasData(
+            new Application
+            {
+                ID = 3,
+                Name = "PosSyncService",
+                ExeName = "DbSyncConsole.exe",
+                IsAssignable = true,
+                StartMode = Domain.Enums.EnumServiceStartMode.Manual,
+            });
+
+            modelBuilder.Entity<Application>().HasData(
+            new Application
+            {
+                ID = 4,
+                Name = "PurePOSCommissionService",
+                ExeName = "PosCommissionService.exe",
+                IsAssignable = true,
+                StartMode = Domain.Enums.EnumServiceStartMode.Manual,
+            });
+
+            modelBuilder.Entity<Application>().HasData(
+           new Application
+           {
+               ID = 5,
+               Name = "PurePOSScheduleService",
+               ExeName = "PosScheduleService.exe",
+               IsAssignable = true,
+               StartMode = Domain.Enums.EnumServiceStartMode.Manual,
+           });
 
             modelBuilder.Entity<ShopGroup>().HasData(
                 new ShopGroup
                 {
                     ID = 1,
-                    CTime = DateTime.Now,
+                    CTime = DateTime.Now.ToUniversalTime(),
                     IsDeleted = false,
-                    MTime = DateTime.Now,
+                    MTime = DateTime.Now.ToUniversalTime(),
                     Name = "Default Group",
                 });
             modelBuilder.Entity<Shop>().HasData(
                 new Shop
                 {
                     ID = 1,
-                    CTime = DateTime.Now,
+                    CTime = DateTime.Now.ToUniversalTime(),
                     IsDeleted = false,
-                    MTime = DateTime.Now,
+                    MTime = DateTime.Now.ToUniversalTime(),
                     Name = "Default Shop",
                     ShopGroupId = 1,
                 });
@@ -40,11 +80,11 @@ namespace Pos.EfCore
                 new User
                 {
                     ID = 1,
-                    CTime = DateTime.Now,
+                    CTime = DateTime.Now.ToUniversalTime(),
                     Email = "admin@posmanager.nl",
                     IsDeleted = false,
                     IsValidated = true,
-                    MTime = DateTime.Now,
+                    MTime = DateTime.Now.ToUniversalTime(),
                     Password = "PoS666",
                     RememberMe = true,
                     ShopId = 1,
@@ -53,34 +93,18 @@ namespace Pos.EfCore
                new User
                {
                    ID = 2,
-                   CTime = DateTime.Now,
+                   CTime = DateTime.Now.ToUniversalTime(),
                    Email = "admin",
                    IsDeleted = false,
                    IsValidated = true,
-                   MTime = DateTime.Now,
+                   MTime = DateTime.Now.ToUniversalTime(),
                    Password = "1",
                    RememberMe = true,
                    ShopId = 1,
                });
 
-            Page page = new Page()
-            {
-                ID = 1,
-                Name = "Users",
-                PurePosId = 2
-            };
-
-            modelBuilder.Entity<Page>().HasData(page);
-
-            page = new Page()
-            {
-                ID = 3,
-                Name = "User Setting",
-                PurePosId = 3
-            };
-
-            modelBuilder.Entity<Page>().HasData(page);
-
+            PageSeed pageSeed = new PageSeed();
+            pageSeed.Seed(modelBuilder);
         }
     }
 }

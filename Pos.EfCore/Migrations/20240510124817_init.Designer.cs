@@ -12,15 +12,15 @@ using Pos.EfCore.Context;
 namespace Pos.EfCore.Migrations
 {
     [DbContext(typeof(CloudContext))]
-    [Migration("20231228083721_Init")]
-    partial class Init
+    [Migration("20240510124817_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -126,13 +126,57 @@ namespace Pos.EfCore.Migrations
                         new
                         {
                             ID = 1L,
-                            CTime = new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(2783),
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(6879),
                             ExeName = "Giftcard.exe",
                             IsAssignable = true,
                             IsDeleted = false,
                             Name = "PurePOSGiftcardService",
                             StartAfterInstall = false,
-                            StartMode = 0
+                            StartMode = 3
+                        },
+                        new
+                        {
+                            ID = 2L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(6992),
+                            ExeName = "PosCloudConnector.exe",
+                            IsAssignable = true,
+                            IsDeleted = false,
+                            Name = "PccService",
+                            StartAfterInstall = false,
+                            StartMode = 2
+                        },
+                        new
+                        {
+                            ID = 3L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7006),
+                            ExeName = "DbSyncConsole.exe",
+                            IsAssignable = true,
+                            IsDeleted = false,
+                            Name = "PosSyncService",
+                            StartAfterInstall = false,
+                            StartMode = 3
+                        },
+                        new
+                        {
+                            ID = 4L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7018),
+                            ExeName = "PosCommissionService.exe",
+                            IsAssignable = true,
+                            IsDeleted = false,
+                            Name = "PurePOSCommissionService",
+                            StartAfterInstall = false,
+                            StartMode = 3
+                        },
+                        new
+                        {
+                            ID = 5L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7031),
+                            ExeName = "PosScheduleService.exe",
+                            IsAssignable = true,
+                            IsDeleted = false,
+                            Name = "PurePOSScheduleService",
+                            StartAfterInstall = false,
+                            StartMode = 3
                         });
                 });
 
@@ -410,7 +454,15 @@ namespace Pos.EfCore.Migrations
                         new
                         {
                             ID = 1L,
-                            CTime = new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3216),
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7227),
+                            IsDeleted = false,
+                            Name = "Settings (Category)",
+                            PurePosId = 1
+                        },
+                        new
+                        {
+                            ID = 2L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7242),
                             IsDeleted = false,
                             Name = "Users",
                             PurePosId = 2
@@ -418,10 +470,82 @@ namespace Pos.EfCore.Migrations
                         new
                         {
                             ID = 3L,
-                            CTime = new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3248),
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7255),
                             IsDeleted = false,
-                            Name = "User Setting",
+                            Name = "User Settings",
                             PurePosId = 3
+                        },
+                        new
+                        {
+                            ID = 4L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7266),
+                            IsDeleted = false,
+                            Name = "Company",
+                            PurePosId = 6
+                        },
+                        new
+                        {
+                            ID = 5L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7278),
+                            IsDeleted = false,
+                            Name = "Company Region",
+                            PurePosId = 7
+                        },
+                        new
+                        {
+                            ID = 6L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7290),
+                            IsDeleted = false,
+                            Name = "Shop",
+                            PurePosId = 8
+                        },
+                        new
+                        {
+                            ID = 7L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7301),
+                            IsDeleted = false,
+                            Name = "Warehouse",
+                            PurePosId = 9
+                        },
+                        new
+                        {
+                            ID = 8L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7311),
+                            IsDeleted = false,
+                            Name = "Product Management",
+                            PurePosId = 10
+                        },
+                        new
+                        {
+                            ID = 9L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7322),
+                            IsDeleted = false,
+                            Name = "Brand",
+                            PurePosId = 11
+                        },
+                        new
+                        {
+                            ID = 10L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7334),
+                            IsDeleted = false,
+                            Name = "Model",
+                            PurePosId = 12
+                        },
+                        new
+                        {
+                            ID = 11L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7345),
+                            IsDeleted = false,
+                            Name = "Season",
+                            PurePosId = 13
+                        },
+                        new
+                        {
+                            ID = 12L,
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7356),
+                            IsDeleted = false,
+                            Name = "Vat",
+                            PurePosId = 18
                         });
                 });
 
@@ -641,9 +765,9 @@ namespace Pos.EfCore.Migrations
                         new
                         {
                             ID = 1L,
-                            CTime = new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3138),
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7079),
                             IsDeleted = false,
-                            MTime = new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3139),
+                            MTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7081),
                             Name = "Default Shop",
                             ShopGroupId = 1L
                         });
@@ -685,9 +809,9 @@ namespace Pos.EfCore.Migrations
                         new
                         {
                             ID = 1L,
-                            CTime = new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3101),
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7050),
                             IsDeleted = false,
-                            MTime = new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3103),
+                            MTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7053),
                             Name = "Default Group"
                         });
                 });
@@ -888,11 +1012,11 @@ namespace Pos.EfCore.Migrations
                         new
                         {
                             ID = 1L,
-                            CTime = new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3183),
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7141),
                             Email = "admin@posmanager.nl",
                             IsDeleted = false,
                             IsValidated = true,
-                            MTime = new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3186),
+                            MTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7144),
                             Password = "PoS666",
                             RememberMe = true,
                             ShopId = 1L
@@ -900,11 +1024,11 @@ namespace Pos.EfCore.Migrations
                         new
                         {
                             ID = 2L,
-                            CTime = new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3208),
+                            CTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7163),
                             Email = "admin",
                             IsDeleted = false,
                             IsValidated = true,
-                            MTime = new DateTime(2023, 12, 28, 11, 37, 21, 268, DateTimeKind.Local).AddTicks(3209),
+                            MTime = new DateTime(2024, 5, 10, 12, 48, 17, 29, DateTimeKind.Utc).AddTicks(7165),
                             Password = "1",
                             RememberMe = true,
                             ShopId = 1L

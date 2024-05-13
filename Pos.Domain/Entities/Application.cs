@@ -1,4 +1,6 @@
-﻿namespace CloudDomain.Domain
+﻿using Pos.Domain.Enums;
+
+namespace CloudDomain.Domain
 {
     public class Application : DefaultEntity
     {
@@ -7,7 +9,7 @@
 
         [StringLength(50)]
         public string ExeName { get; set; }
-        public int StartMode { get; set; }
+        public EnumServiceStartMode StartMode { get; set; }
         public bool StartAfterInstall { get; set; }
         public bool IsAssignable { get; set; }
         public List<StationApp> StationApps { get; set; }

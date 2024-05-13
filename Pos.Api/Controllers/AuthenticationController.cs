@@ -1,6 +1,8 @@
 ﻿using CloudDomain;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.IdentityModel.Tokens;
 using Pos.EfCore.Context;
 using System.IdentityModel.Tokens.Jwt;
@@ -21,6 +23,7 @@ namespace TestApi.Controllers
         {
             _config = configuration;
             _context = context;
+            string[] args= { };
         }
 
         [HttpPost("login")]

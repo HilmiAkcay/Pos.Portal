@@ -38,7 +38,7 @@ namespace Pos.Domain.Entities
         /// </summary>
         protected CreationAuditedEntity()
         {
-            CTime = DateTime.Now;
+            CTime = DateTime.Now.ToUniversalTime();
         }
     }
 
