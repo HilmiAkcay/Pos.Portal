@@ -14,6 +14,7 @@ namespace TestApi.EntityDataModels
             builder.ContainerName = "PurePOS.Cloud.Container";
 
             builder.EntitySet<Application>("Application");
+            builder.EntitySet<Page>("Page");
 
             return builder.GetEdmModel();
         }

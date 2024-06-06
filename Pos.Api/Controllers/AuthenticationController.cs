@@ -43,7 +43,7 @@ namespace TestApi.Controllers
                 Claim claimDb = new Claim("Tenant", "17");
                 claims.Add(claimDb);
 
-                var tokeOptions = new JwtSecurityToken(issuer: _config["JWT:ValidIssuer"], audience: _config["JWT:ValidAudience"], claims: claims, expires: DateTime.Now.AddMinutes(6), signingCredentials: signinCredentials);
+                var tokeOptions = new JwtSecurityToken(issuer: _config["JWT:ValidIssuer"], audience: _config["JWT:ValidAudience"], claims: claims, expires: DateTime.Now.AddMinutes(10), signingCredentials: signinCredentials);
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
                 
                 return Ok(new JWTTokenResponse
