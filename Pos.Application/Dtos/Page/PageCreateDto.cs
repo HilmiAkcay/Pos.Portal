@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Pos.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pos.Domain.Model
+namespace Pos.Application.Dtos.Page
 {
-    public class PageModelCreate: DefaultEntity
+    public class PageCreateDto : Entity
     {
         public int PurePosId { get; set; }
         public string Name { get; set; }

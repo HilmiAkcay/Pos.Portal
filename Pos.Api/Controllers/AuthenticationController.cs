@@ -23,7 +23,7 @@ namespace TestApi.Controllers
         {
             _config = configuration;
             _context = context;
-            string[] args= { };
+            string[] args = { };
         }
 
         [HttpPost("login")]
@@ -34,18 +34,20 @@ namespace TestApi.Controllers
                 return BadRequest("Invalid user request!!!");
             }
 
-            bool isValid = _context.User.Where(w => w.Email == user.UserName && w.Password == user.Password && w.IsDeleted == false).Any();
-            if (isValid)
+            long userId = _context.User.Where(w => w.Email == user.UserName && w.Password == user.Password && w.IsDeleted == false).Select(s => s.ID).FirstOrDefault();
+            if (userId > 0)
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Secret"]));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 List<Claim> claims = new List<Claim>();
                 Claim claimDb = new Claim("Tenant", "17");
+                Claim claimUserId = new Claim("UserId", userId.ToString());
                 claims.Add(claimDb);
+                claims.Add(claimUserId);
 
                 var tokeOptions = new JwtSecurityToken(issuer: _config["JWT:ValidIssuer"], audience: _config["JWT:ValidAudience"], claims: claims, expires: DateTime.Now.AddMinutes(10), signingCredentials: signinCredentials);
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                
+
                 return Ok(new JWTTokenResponse
                 {
                     Token = tokenString

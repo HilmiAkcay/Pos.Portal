@@ -7,7 +7,9 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Pos.Domain.Interface;
 using Pos.EfCore.Context;
+using Pos.Infrastructure.Repositories;
 using System.Text;
 using TestApi.EntityDataModels;
 
@@ -87,7 +89,9 @@ builder.Services.AddDbContext<CloudContext>(opt =>
     }
 });
 
+//builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddScoped<IPageRepository, PageRepository>();
 
 builder.Services.AddAuthentication(opt =>
 {

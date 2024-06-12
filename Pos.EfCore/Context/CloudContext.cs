@@ -1,5 +1,6 @@
 ﻿using CloudDomain;
 using CloudDomain.Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -36,8 +37,11 @@ public class CloudContext : DbContext
 
     #endregion Entities
 
-    public CloudContext(DbContextOptions<CloudContext> options) : base(options)
+    private readonly IHttpContextAccessor _httpContextAccessor;
+
+    public CloudContext(DbContextOptions<CloudContext> options, IHttpContextAccessor httpContextAccessor) : base(options)
     {
+        _httpContextAccessor = httpContextAccessor;
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -75,6 +79,7 @@ public class CloudContext : DbContext
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         HandleSoftDelete();
+        HandleAudit();
         return base.SaveChangesAsync(cancellationToken);
     }
 
@@ -86,6 +91,29 @@ public class CloudContext : DbContext
             entry.State = EntityState.Modified;
             entry.Entity.IsDeleted = true;
             CascadeSoftDelete(entry.Entity);
+        }
+    }
+
+    private void HandleAudit()
+    {
+        var userId = _httpContextAccessor.HttpContext?.User?.Claims.Where(w => w.Type == "UserId").Select(s => s.Value).FirstOrDefault();
+        long userIdLong = 0;
+        long.TryParse(userId, out userIdLong);    
+
+        foreach (var entry in ChangeTracker.Entries<DefaultEntity>())
+        {
+            if (entry.State == EntityState.Modified)
+            {
+                entry.Entity.MTime = DateTime.Now;
+                entry.Entity.MUserId = userIdLong;
+            }
+            else if (entry.State == EntityState.Added)
+            {
+                entry.Entity.MTime = DateTime.Now;
+                entry.Entity.CTime = DateTime.Now;
+                entry.Entity.MUserId = userIdLong;
+                entry.Entity.CUserId = userIdLong;
+            }
         }
     }
 
